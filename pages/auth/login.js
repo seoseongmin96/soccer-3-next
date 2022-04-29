@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux'
 import { login } from '@/modules/auth/register'
 import { Login } from '@/components/auth/Login'
 import { loginRequest,loginCancelled,logoutRequest } from '@/modules/auth/login';
+import { WindowsFilled } from '@ant-design/icons';
 
 const LoginPage = () => {
     const [user, setUser] =useState({
@@ -18,12 +19,13 @@ const LoginPage = () => {
         e.preventDefault()
         alert('로그인 정보: '+JSON.stringify(user))
         dispatch(loginRequest(user))
+        window.location.href='/'
     }
     return (
         <Login onChange={onChange} onSubmit={onSubmit}/>
     );
 };
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({isloggined: state.login.isloggined})
 const loginActions = {loginRequest,loginCancelled,logoutRequest}
 export default connect(mapStateToProps, loginActions)(LoginPage);

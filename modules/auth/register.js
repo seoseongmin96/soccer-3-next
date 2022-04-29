@@ -37,7 +37,7 @@ function* signup(action) {
         const response = yield call(registerAPI, action.payload)
         console.log(" 회원가입 서버다녀옴: " + JSON.stringify(response.data))
         yield put({type: REGISTER_SUCCESS, payload: response.data})
-        yield put(window.location.href="auth/login")
+        yield put(window.location.href="/auth/login")
     } catch (error) {
         yield put({type: REGISTER_FAILURE, payload: error.message})
     }
@@ -71,7 +71,7 @@ const auth = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             }
-        case USER_REGISTER_SUCCESS:
+        case USER_REGISTER_SUCCESS: 
             console.log(' ### 회원가입 성공 ### ' + JSON.stringify(action.payload))
             return {
                 ...state,
