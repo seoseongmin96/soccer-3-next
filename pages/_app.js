@@ -1,13 +1,19 @@
 import '@/styles/globals.css'
-import {Footer, Header, Nav} from "@/components";
-import { wrapper } from '@/modules/store'
+import { Nav, Header, Layout, Footer} from '@/components'
+import { wrapper } from '@/modules/store.js'
+import styles from "@/styles/Header.module.css";
+
+
 const App = ({ Component, pageProps }) => {
-  return <>
-   <Header/>
-  <Nav/>
-  <Component {...pageProps} />
-  <Footer/>
-  </>
+  return (<div>
+    <Nav/>
+      <Header className={styles.header}/>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <Footer/>
+      </div>
+    )
 }
 
 export default wrapper.withRedux(App)
