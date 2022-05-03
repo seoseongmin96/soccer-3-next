@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { registerRequest, unregisterRequest } from '@/modules/auth/register';
+import { registerRequest} from '@/modules/auth/register';
 import { Register } from '@/components';
-import { useRouter } from 'next/router';
+import { routerMiddleware } from 'connected-react-router';
+
+
 const RegisterPage = () => {
     const [user, setUser] =useState({
         userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
     })
     const dispatch = useDispatch()
-    const router = useRouter()
+    
     const onChange = e =>{
         e.preventDefault()
         const{name, value} = e.target;
@@ -16,9 +18,8 @@ const RegisterPage = () => {
     }
     const onSubmit = e => {
         e.preventDefault()
-        alert('회원가입정보: '+JSON.stringify(user))
         dispatch(registerRequest(user))
-        router.push('/auth/login')
+
         
     }
   return (
@@ -26,5 +27,5 @@ const RegisterPage = () => {
   );
 };
 const mapStateToProps = state => ({isRegistered: state.register.isRegistered})
-const registerActions = {registerRequest, unregisterRequest}
+const registerActions = {registerRequest}
 export default connect(mapStateToProps, registerActions)(RegisterPage);

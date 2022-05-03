@@ -9,7 +9,7 @@ import {
 } from 'redux-saga/effects';
 import {HYDRATE} from "next-redux-wrapper"
 import axios from 'axios'
-
+import { createBrowserHistory } from 'history'
 
 
 const SERVER = 'http://127.0.0.1:5000'
@@ -86,7 +86,7 @@ function* loginCancel(action) {
         console.log(`로그인 취소`)
     } catch (error) {}
 }
-/**
+
 const login = handleActions({
     [HYDRATE]: (state, action) => ({
         ...state,
@@ -115,7 +115,7 @@ const login = handleActions({
         isLoggined: false
     }),
 }, initialState)
- */
+ /** 
 const login = (state = initialState, action) => {
     switch (action.type) {
         case HYDRATE:
@@ -140,5 +140,5 @@ const login = (state = initialState, action) => {
             return state;
     }
 }
-
+*/
 export default login
